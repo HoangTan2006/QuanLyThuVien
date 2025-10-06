@@ -47,8 +47,8 @@ public class Sach {
 	}
 
 	public void setMaSach(String maSach) {
-		if(maSach == null || maSach.isBlank()) {
-			throw new IllegalArgumentException("Ma sach khong duoc de trong");
+		if(maSach == null || maSach.isBlank() || maSach.length() < 6) {
+			throw new IllegalArgumentException("Ma sach khong duoc de trong va phai dai hon 6 ky tu");
 		}
 		this.maSach = maSach;
 	}
