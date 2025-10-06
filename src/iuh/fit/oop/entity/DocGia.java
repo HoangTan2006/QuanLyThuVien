@@ -1,4 +1,4 @@
-package iuh.fit.oop;
+package iuh.fit.oop.entity;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,6 @@ public class DocGia {
 	private String soDienThoai;
 	private GioiTinh gioiTinh;
 	private String diaChi;
-	
 	
 	
 	public DocGia(String maDocGia, String hoVaTen, LocalDate ngaySinh, String soDienThoai, GioiTinh gioiTinh,

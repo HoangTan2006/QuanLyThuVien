@@ -1,4 +1,4 @@
-package iuh.fit.oop;
+package iuh.fit.oop.entity;
 
 public enum GioiTinh {
 	NAM("Nam"),
