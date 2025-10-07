@@ -36,7 +36,7 @@ public class SachRepository {
 			while ((line = dataReader.readLine()) != null) {
 				if (count == listSach.length) extend();
 				
-				String attributeValues[] = line.split(";");
+				String attributeValues[] = line.split(",");
 				
 				Sach sach = new Sach(
 						attributeValues[0],
@@ -60,16 +60,17 @@ public class SachRepository {
 			for (int i = 0; i < quantity; i++) {
 				StringBuilder line = new StringBuilder();
 				
-				line.append(listSach[i].getMaSach()).append(";");
-				line.append(listSach[i].getTenSach()).append(";");
-				line.append(listSach[i].getTenTacGia()).append(";");
-				line.append(listSach[i].getNgayXB().toString()).append(";");
-				line.append(listSach[i].getNhaXB()).append(";");
+				line.append(listSach[i].getMaSach()).append(",");
+				line.append(listSach[i].getTenSach()).append(",");
+				line.append(listSach[i].getTenTacGia()).append(",");
+				line.append(listSach[i].getNgayXB().toString()).append(",");
+				line.append(listSach[i].getNhaXB()).append(",");
 				line.append(listSach[i].getTrangThai());
 				
 				dataWriter.newLine();
 				dataWriter.write(line.toString());
 			}
+			this.count = quantity;
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}

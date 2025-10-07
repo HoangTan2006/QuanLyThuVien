@@ -10,7 +10,6 @@ public class DocGia {
 	private GioiTinh gioiTinh;
 	private String diaChi;
 	
-	
 	public DocGia(String maDocGia, String hoVaTen, LocalDate ngaySinh, String soDienThoai, GioiTinh gioiTinh,
 			String diaChi) {
 		setMaDocGia(maDocGia);
@@ -89,7 +88,7 @@ public class DocGia {
 	
 	@Override
 	public String toString() {
-		return String.format("| %10 | %20 | %S10 | %S12 | %S5 | %s20 |",
+		return String.format("|| %10s || %20s || %10s || %12s || %10s || %20s ||",
 				maDocGia,
 				hoVaTen,
 				ngaySinh.toString(),

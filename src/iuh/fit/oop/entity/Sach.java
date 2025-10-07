@@ -94,13 +94,12 @@ public class Sach {
 	@Override
 	public String toString() {
 		
-		return String.format("%6s || %40s || %25s || %15s || %35s || %10s",
-							maSach, 
-							tenSach,  
-							tenTacGia, 
-							ngayXB.toString(), 
-							nhaXB, 
+		return String.format("|| %6s || %40s || %25s || %15s || %35s || %10s ||",
+							maSach,
+							tenSach,
+							tenTacGia,
+							ngayXB.toString(),
+							nhaXB,
 							trangThai);
 	}
-
 }
