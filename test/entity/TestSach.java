@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import iuh.fit.oop.entity.Sach;
 import iuh.fit.oop.entity.TrangThai;
 
-public class SachTest {
+public class TestSach {
 
 
     @ParameterizedTest
