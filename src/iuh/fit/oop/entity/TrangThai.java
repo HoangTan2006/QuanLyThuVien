@@ -2,7 +2,7 @@ package iuh.fit.oop.entity;
 
 public enum TrangThai {
 	DA_MUON("Đã mượn"),
-	 CHUA_MUON("Chưa mượn");
+	CHUA_MUON("Chưa mượn");
 	
 	private String trangThai;
 
