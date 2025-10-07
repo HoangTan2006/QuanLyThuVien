@@ -11,7 +11,6 @@ public enum TrangThai {
 	}
 	@Override
 	public String toString() {
-		
 		return trangThai;
 	}
 }
