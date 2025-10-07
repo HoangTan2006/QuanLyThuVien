@@ -12,7 +12,7 @@ import iuh.fit.oop.entity.DocGia;
 import iuh.fit.oop.entity.GioiTinh;
 
 public class DocGiaRepository {
-private final String pathFileData = "./data/docgia.csv";
+	private final String pathFileData = "./data/docgia.csv";
 	
 	private DocGia[] listDocGia;
 	private int count;
@@ -63,7 +63,7 @@ private final String pathFileData = "./data/docgia.csv";
 				line.append(listDocGia[i].getMaDocGia()).append(",");
 				line.append(listDocGia[i].getHoVaTen()).append(",");
 				line.append(listDocGia[i].getNgaySinh()).append(",");
-				line.append(listDocGia[i].getSoDienThoai().toString()).append(",");
+				line.append(listDocGia[i].getSoDienThoai()).append(",");
 				line.append(listDocGia[i].getGioiTinh()).append(",");
 				line.append(listDocGia[i].getDiaChi());
 				
@@ -81,11 +81,11 @@ private final String pathFileData = "./data/docgia.csv";
 		) {
 			StringBuilder line = new StringBuilder();
 			
-			line.append(docGia.getMaDocGia() + ";");
-			line.append(docGia.getHoVaTen() + ";");
-			line.append(docGia.getNgaySinh().toString() + ";");
-			line.append(docGia.getSoDienThoai().toString() + ";");
-			line.append(docGia.getGioiTinh() + ";");
+			line.append(docGia.getMaDocGia()).append(";");
+			line.append(docGia.getHoVaTen()).append(";");
+			line.append(docGia.getNgaySinh()).append(";");
+			line.append(docGia.getSoDienThoai()).append(";");
+			line.append(docGia.getGioiTinh()).append(";");
 			line.append(docGia.getDiaChi());
 				
 			dataWriter.newLine();
@@ -98,6 +98,15 @@ private final String pathFileData = "./data/docgia.csv";
 	
 	private void extend() {
 		this.listDocGia = Arrays.copyOf(listDocGia, count * 2);
+	}
+	
+	private boolean isExists(String maDocGia) {
+		for (int i = 0; i < count; i++) {
+			if (listDocGia[i].getMaDocGia().equals(maDocGia)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public DocGia findByMaDocGia(String maDocGia) {
@@ -116,6 +125,11 @@ private final String pathFileData = "./data/docgia.csv";
 	
 	public void createDocGia(String maDocGia, String hoVaTen, LocalDate ngaySinh, String soDienThoai, GioiTinh gioiTinh,
 			String diaChi) {
+		
+		if (isExists(maDocGia)) {
+			throw new IllegalArgumentException("Ma doc gia da ton tai");
+		}
+		
 		DocGia docGia = new DocGia(maDocGia, hoVaTen, ngaySinh, soDienThoai, gioiTinh, diaChi);
 		
 		if (count == listDocGia.length) extend();
