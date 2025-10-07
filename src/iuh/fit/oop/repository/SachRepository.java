@@ -67,8 +67,8 @@ public class SachRepository {
 				line.append(listSach[i].getNhaXB()).append(",");
 				line.append(listSach[i].getTrangThai());
 				
-				dataWriter.newLine();
 				dataWriter.write(line.toString());
+				dataWriter.newLine();
 			}
 			this.count = quantity;
 		} catch (IOException e) {
@@ -90,7 +90,6 @@ public class SachRepository {
 				
 			dataWriter.newLine();
 			dataWriter.write(line.toString());
-			count++;
 			
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
@@ -155,9 +154,10 @@ public class SachRepository {
 		for (int i = 0; i < count; i++) {
 			if (listSach[i].getMaSach().equals(sach.getMaSach())) {
 				listSach[i] = sach;
+				writeData(listSach, count);
+				return;
 			}
 		}
-		writeData(listSach, count);
 	}
 	
 	public void deleteByMaSach(String maSach) {

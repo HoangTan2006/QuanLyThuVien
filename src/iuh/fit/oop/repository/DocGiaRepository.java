@@ -67,8 +67,8 @@ public class DocGiaRepository {
 				line.append(listDocGia[i].getGioiTinh()).append(",");
 				line.append(listDocGia[i].getDiaChi());
 				
-				dataWriter.newLine();
 				dataWriter.write(line.toString());
+				dataWriter.newLine();
 			}
 			this.count = quantity;
 		} catch (IOException e) {
@@ -90,7 +90,6 @@ public class DocGiaRepository {
 				
 			dataWriter.newLine();
 			dataWriter.write(line.toString());
-			count++;
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
@@ -142,9 +141,10 @@ public class DocGiaRepository {
 		for (int i = 0; i < count; i++) {
 			if (listDocGia[i].getMaDocGia().equals(docGia.getMaDocGia())) {
 				listDocGia[i] = docGia;
+				writeData(listDocGia, count);
+				return;
 			}
 		}
-		writeData(listDocGia, count);
 	}
 	
 	public void deleteByMaDocGia(String maDocGia) {

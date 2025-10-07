@@ -88,7 +88,7 @@ public class DocGia {
 	
 	@Override
 	public String toString() {
-		return String.format("|| %10s || %20s || %10s || %12s || %10s || %20s ||",
+		return String.format("| %10s | %20s | %10s | %14s | %10s | %20s |",
 				maDocGia,
 				hoVaTen,
 				ngaySinh.toString(),

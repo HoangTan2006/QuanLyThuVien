@@ -74,7 +74,7 @@ public class PhieuMuonSach {
 	
 	@Override
 	public String toString() {
-		return String.format("|| %15s || %10s || %10s || %15s || %15s ||",
+		return String.format("| %15s | %10s | %10s | %15s | %15s |",
 				maPhieuMuon,
 				maDocGia,
 				maSach,

@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 import iuh.fit.oop.entity.PhieuMuonSach;
+import iuh.fit.oop.entity.Sach;
+import iuh.fit.oop.entity.TrangThai;
 
 public class PhieuMuonSachRepository {
 	private final String pathFileData = "./data/phieumuonsach.csv";
@@ -64,8 +66,8 @@ public class PhieuMuonSachRepository {
 				line.append(listPhieuMuonSach[i].getNgayMuon()).append(",");
 				line.append(listPhieuMuonSach[i].getNgayTra());
 				
-				dataWriter.newLine();
 				dataWriter.write(line.toString());
+				dataWriter.newLine();
 			}
 			this.count = quantity;
 		} catch (IOException e) {
@@ -86,7 +88,6 @@ public class PhieuMuonSachRepository {
 				
 			dataWriter.newLine();
 			dataWriter.write(line.toString());
-			count++;
 			
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
@@ -147,6 +148,17 @@ public class PhieuMuonSachRepository {
 		if (isExists(maPhieuMuon)) {
 			throw new IllegalArgumentException("Ma phieu muon da ton tai");
 		}
+		SachRepository sachRepository = new SachRepository(100);
+		sachRepository.readData();
+		
+		Sach sach = sachRepository.findByMaSach(maSach);
+		
+		if (sach == null || sach.getTrangThai().equals(TrangThai.DA_MUON)) {
+			throw new IllegalArgumentException("Sach da co nguoi muon");
+		}
+
+		sach.setTrangThai(TrangThai.DA_MUON);
+		sachRepository.updateSach(sach);
 		
 		if (count == listPhieuMuonSach.length) extend();
 		
@@ -154,5 +166,23 @@ public class PhieuMuonSachRepository {
 		
 		listPhieuMuonSach[count++] = phieuMuonSach;
 		writeOneRowData(phieuMuonSach);
+	}
+	
+	public void returnASach(String maPhieuMuon) {
+		if (maPhieuMuon == null || maPhieuMuon.isBlank()) {
+			throw new IllegalArgumentException("Ma phieu muon khong hop le");
+		}
+		
+		PhieuMuonSach phieuMuonSach = findByMaPhieuMuon(maPhieuMuon);
+		if (phieuMuonSach != null) {
+			SachRepository sachRepository = new SachRepository(100);
+			sachRepository.readData();
+			Sach sach = sachRepository.findByMaSach(phieuMuonSach.getMaSach());
+			
+			if (sach != null) {
+				sach.setTrangThai(TrangThai.CHUA_MUON);
+				sachRepository.updateSach(sach);
+			}
+		}
 	}
 }
