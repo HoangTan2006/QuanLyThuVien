@@ -81,11 +81,11 @@ public class SachRepository {
 		) {
 			StringBuilder line = new StringBuilder();
 			
-			line.append(sach.getMaSach() + ";");
-			line.append(sach.getTenSach() + ";");
-			line.append(sach.getTenTacGia() + ";");
-			line.append(sach.getNgayXB().toString() + ";");
-			line.append(sach.getNhaXB() + ";");
+			line.append(sach.getMaSach()).append(",");
+			line.append(sach.getTenSach()).append(",");
+			line.append(sach.getTenTacGia()).append(",");
+			line.append(sach.getNgayXB()).append(",");
+			line.append(sach.getNhaXB()).append(",");
 			line.append(sach.getTrangThai());
 				
 			dataWriter.newLine();
@@ -99,6 +99,15 @@ public class SachRepository {
 	
 	private void extend() {
 		this.listSach = Arrays.copyOf(listSach, count * 2);
+	}
+	
+	private boolean isExists(String maSach) {
+		for (int i = 0; i < count; i++) {
+			if (listSach[i].getMaSach().equals(maSach)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public Sach findByMaSach(String maSach) {
@@ -120,7 +129,7 @@ public class SachRepository {
 				foundSach[quantityFound++] = listSach[i];
 			}
 		}
-		return (quantityFound != 0) ? Arrays.copyOf(foundSach, quantityFound) : null;
+		return (quantityFound > 0) ? Arrays.copyOf(foundSach, quantityFound) : null;
 	}
 	
 	public Sach[] getListSach() {
@@ -129,6 +138,11 @@ public class SachRepository {
 	
 	public void createSach(String maSach, String tenSach, String tenTacGia, LocalDate ngayXB, String nhaXB,
 			TrangThai trangThai) {
+		
+		if (isExists(maSach)) {
+			throw new IllegalArgumentException("Ma sach da ton tai");
+		}
+		
 		Sach sach = new Sach(maSach, tenSach, tenTacGia, ngayXB, nhaXB, trangThai);
 		
 		if (count == listSach.length) extend();
