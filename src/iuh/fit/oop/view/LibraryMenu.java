@@ -1,4 +1,4 @@
-package view;
+package iuh.fit.oop.view;
 
 import java.time.LocalDate;
 import java.util.Scanner;
