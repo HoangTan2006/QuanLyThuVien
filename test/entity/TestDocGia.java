@@ -11,10 +11,6 @@ import iuh.fit.oop.entity.DocGia;
 import iuh.fit.oop.entity.GioiTinh;
 
 public class TestDocGia {
-<<<<<<< HEAD
-	
-}
-=======
 
     @ParameterizedTest
     @CsvSource({
@@ -164,4 +160,3 @@ public class TestDocGia {
         }
     }
 }
->>>>>>> test
