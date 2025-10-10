@@ -167,9 +167,9 @@ public class SachRepository {
 					listSach[j] = listSach[j + 1];
 				}
 				listSach[--count] = null;
+				writeData(listSach, count);
 				return;
 			}
 		}
-		writeData(listSach, count);
 	}
 }

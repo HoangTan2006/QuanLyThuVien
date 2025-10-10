@@ -154,9 +154,9 @@ public class DocGiaRepository {
 					listDocGia[j] = listDocGia[j + 1];
 				}
 				listDocGia[--count] = null;
+				writeData(listDocGia, count);
 				return;
 			}
 		}
-		writeData(listDocGia, count);
 	}
 }
